@@ -182,7 +182,7 @@ Here’s an overview of key **Data Structures** and **Algorithms** in **C++**, a
 ## 1. **Basic Data Structures**
 
 #### a. **Array**
-
+Here’s a code has common for 
 ```cpp
 #include <iostream>
 using namespace std;
