@@ -54,8 +54,162 @@ Here is a list of common **Data Structures** categorized by their types:
    - **KMP Table (Knuth-Morris-Pratt Algorithm Table)**: Used for pattern matching in strings.
 
 These data structures are fundamental in computer science and are crucial for developing efficient algorithms. Let me know if you'd like to explore any specific data structure in more detail!
+#### multi array with pointer
+```c
+// structure with sigle pointer access the structure element
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
 
+struct Employee 
+{ 
+  int employee_id; 
+  char name[20]; 
+  int salary; 
+}; 
+  
+struct Organisation  
+{ 
+  char organisation_name[20]; 
+  char org_number[20]; 
+    
+  struct Employee emp;  
+};
 
+int main()
+{
+    printf("Hi, the structure is created\n");
+    struct Organisation *org;
+    org = (struct Organisation*)malloc(sizeof(struct Organisation));
+    strcpy(org->organisation_name, "Olees");
+    strcpy(org->org_number, "XCUAN");
+    org->emp.employee_id =32;
+    strcpy(org->emp.name, "Thangaraj");
+    org->emp.salary =147000;
+    printf("name:%s | Organisation Number : %s | employee_id : %d | employee_Name: %s, | Salary :%d ",
+        org->organisation_name, org->org_number,org->emp.employee_id, org->emp.name, \
+        org->emp.salary);
+    return 0;
+}
+```
+```c
+// structure with sigle pointer to structure pointer access the structure element
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+struct Employee 
+{ 
+  int employee_id; 
+  char name[20]; 
+  int salary; 
+}; 
+  
+struct Organisation  
+{ 
+  char organisation_name[20]; 
+  char org_number[20]; 
+    
+  struct Employee *emp;  
+};
+
+int main()
+{
+    printf("Hi, the structure is created\n");
+    struct Organisation *org;
+    org = (struct Organisation*)malloc(sizeof(struct Organisation));
+    org->emp=(struct Employee*)malloc(sizeof(struct Employee));
+    strcpy(org->organisation_name, "Olees");
+    strcpy(org->org_number, "XCUAN");
+    org->emp->employee_id =32;
+    strcpy(org->emp->name, "Thangaraj");
+    org->emp->salary =147000;
+    printf("name:%s | Organisation Number : %s | employee_id : %d | employee_Name: %s, | Salary :%d ",
+        org->organisation_name, org->org_number,org->emp->employee_id, org->emp->name, \
+        org->emp->salary);
+    return 0;
+}
+
+```
+
+```c
+   //single linked list
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    printf("%d \n", newNode->data);
+    return newNode;
+}
+
+// Function to insert a node at the end
+void insertAtEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+
+    struct Node* temp = *head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
+
+// Function to display the linked list
+void displayList(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Function to delete a node from the beginning
+void deleteFromBeginning(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+    struct Node* temp = *head;
+    *head = (*head)->next;
+    free(temp);
+}
+
+// Main function
+int main() {
+    struct Node* head = NULL;
+
+    insertAtEnd(&head, 10);
+    insertAtEnd(&head, 20);
+    insertAtEnd(&head, 30);
+
+    printf("Linked List: ");
+    displayList(head);
+
+    printf("After deleting the first node:\n");
+    deleteFromBeginning(&head);
+    displayList(head);
+
+    return 0;
+}
+``` c
+// single linked list another structure using external input with auto add
+
+```
 Here is a comprehensive list of **Algorithms**, categorized by their purpose and type:
 
 ### 1. **Searching Algorithms**
