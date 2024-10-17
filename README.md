@@ -206,11 +206,166 @@ int main() {
 
     return 0;
 }
+```
+### 1.1
 ``` c
 // single linked list another structure using external input with auto add
+#include <stdio.h>
+#include <stdlib.h>
 
 ```
-Here is a comprehensive list of **Algorithms**, categorized by their purpose and type:
+### 2. 
+``` c
+// sigle linked list with create node / display node data / delete node / sort node / duplicate node
+ #include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the end of the list
+void insertAtEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+
+    struct Node* temp = *head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
+
+// Function to display the linked list
+void displayList(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Function to delete a node by value
+void deleteNodeByValue(struct Node** head, int value) {
+    if (*head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+
+    // If the node to be deleted is the head node
+    if ((*head)->data == value) {
+        struct Node* temp = *head;
+        *head = (*head)->next;
+        free(temp);
+        return;
+    }
+
+    struct Node* temp = *head;
+    while (temp->next != NULL && temp->next->data != value) {
+        temp = temp->next;
+    }
+
+    if (temp->next == NULL) {
+        printf("Node with value %d not found.\n", value);
+        return;
+    }
+
+    struct Node* delNode = temp->next;
+    temp->next = temp->next->next;
+    free(delNode);
+}
+
+// Function to remove duplicates from the list
+void removeDuplicates(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL && current->next != NULL) {
+        struct Node* runner = current;
+        while (runner->next != NULL) {
+            if (runner->next->data == current->data) {
+                struct Node* temp = runner->next;
+                runner->next = runner->next->next;
+                free(temp);
+            } else {
+                runner = runner->next;
+            }
+        }
+        current = current->next;
+    }
+}
+
+// Function to sort the linked list
+void sortList(struct Node* head) {
+    if (head == NULL) {
+        return;
+    }
+
+    struct Node* current = head;
+    struct Node* index = NULL;
+    int temp;
+
+    while (current != NULL) {
+        index = current->next;
+        while (index != NULL) {
+            if (current->data > index->data) {
+                // Swap data
+                temp = current->data;
+                current->data = index->data;
+                index->data = temp;
+            }
+            index = index->next;
+        }
+        current = current->next;
+    }
+}
+
+// Main function
+int main() {
+    struct Node* head = NULL;
+
+    // Insert nodes into the list
+    insertAtEnd(&head, 10);
+    insertAtEnd(&head, 30);
+    insertAtEnd(&head, 20);
+    insertAtEnd(&head, 40);
+    insertAtEnd(&head, 30); // Duplicate node
+
+    printf("Linked List: ");
+    displayList(head);
+
+    // Deleting a particular node by value
+    printf("After deleting node with value 20:\n");
+    deleteNodeByValue(&head, 20);
+    displayList(head);
+
+    // Removing duplicate nodes
+    printf("After removing duplicates:\n");
+    removeDuplicates(head);
+    displayList(head);
+
+    // Sorting the linked list
+    printf("After sorting the list:\n");
+    sortList(head);
+    displayList(head);
+
+    return 0;
+}
+ 
+```
+## Here is a comprehensive list of **Algorithms**, categorized by their purpose and type:
 
 ### 1. **Searching Algorithms**
    - **Linear Search**: Sequentially checks each element of the list until a match is found or the whole list has been searched.
