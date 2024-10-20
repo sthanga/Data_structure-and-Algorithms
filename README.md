@@ -213,6 +213,43 @@ int main() {
 #include <stdio.h>
 #include <stdlib.h>
 
+struct node
+{
+    int data;
+    struct node* next;
+};
+int main()
+{ 
+    struct node* head, *temp;
+    int data;
+    head = NULL;
+    int choice =1;
+    while(choice){
+        struct node* newnode = (struct node*)malloc(sizeof(struct node));
+        printf("Enter data  : ");
+        scanf("%d",&newnode->data);
+        newnode->next = NULL;
+        if (head == NULL)
+        {
+            head = newnode;
+            temp = newnode;
+        } else {
+            temp->next = newnode;
+            temp=newnode ;
+        }
+        printf ("Enter the choice 1 or 0  :   ");
+        scanf("%d",&choice);
+    }
+    temp = head;
+    while(temp!= NULL)
+    {
+        printf("link => %d- ", temp->data);
+        temp= temp->next;
+    }
+
+    return 0;
+}
+
 ```
 ### 2. 
 ``` c
